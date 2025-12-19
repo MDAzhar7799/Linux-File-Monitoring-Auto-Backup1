@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #0f172a, #020617);
+    color: #e5e7eb;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
+}
+
+.hero p {
+    margin: 15px 0;
+    color: #94a3b8;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* NAV */
+nav {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+}
+
+nav a {
+    color: #e5e7eb;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #38bdf8;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 40px auto;
+    width: 85%;
+    max-width: 900px;
+    box-shadow: 0 0 30px rgba(56,189,248,0.1);
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+/* FEATURES */
+.features li {
+    margin: 10px 0;
+}
+
+/* BADGES */
+.badges span {
+    display: inline-block;
+    margin: 8px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: rgba(56,189,248,0.15);
+    color: #38bdf8;
+}
+
+/* OUTPUT */
+pre {
+    margin-top: 15px;
+    background: #020617;
+    padding: 15px;
+    border-radius: 10px;
+    display: none;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #94a3b8;
+}
+
+
+.gallery {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.gallery div {
+    text-align: center;
+}
+
+.gallery img {
+    width: 260px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid rgba(56,189,248,0.3);
+}
+
+.gallery p {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}

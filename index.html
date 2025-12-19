@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linux File Monitoring & Auto Backup</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+    <h1>Linux File Monitoring & Auto-Backup System</h1>
+    <p>Shell Scripting Based Automation Project</p>
+    <a href="#about" class="btn">Explore Project</a>
+</header>
+
+<!-- NAV -->
+<nav>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#tech">Technologies</a>
+    <a href="#working">Working</a>
+</nav>
+
+<!-- ABOUT -->
+<section id="about" class="card">
+    <h2>📌 About the Project</h2>
+    <p>
+        This project monitors a directory in Linux for real-time file changes such as
+        creation, modification, or deletion. When a change is detected, an automatic
+        compressed backup is created using shell scripting.
+    </p>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="card">
+    <h2>🚀 Key Features</h2>
+    <ul class="features">
+        <li>📂 Real-time file monitoring</li>
+        <li>🔄 Automatic backup generation</li>
+        <li>🕒 Timestamped backup files</li>
+        <li>📝 Activity logging</li>
+        <li>⚙️ Fully automated using Shell Script</li>
+    </ul>
+</section>
+
+<!-- TECHNOLOGIES -->
+<section id="tech" class="card">
+    <h2>🛠 Technologies Used</h2>
+    <div class="badges">
+        <span>Linux OS</span>
+        <span>Bash Scripting</span>
+        <span>inotifywait</span>
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+    </div>
+</section>
+
+<!-- WORKING -->
+<section id="working" class="card">
+    <h2>⚙️ How It Works</h2>
+    <ol>
+        <li>User selects a directory to monitor</li>
+        <li><b>inotifywait</b> detects file changes</li>
+        <li>Backup is created automatically</li>
+        <li>Logs are saved with timestamp</li>
+    </ol>
+
+    <button onclick="showOutput()" class="btn">View Sample Output</button>
+    <pre id="output"></pre>
+</section>
+
+
+<!-- SHELL SCRIPT -->
+<section id="script" class="card">
+    <h2>🖥 Shell Script Code</h2>
+    <p>This Bash script monitors a directory and creates automatic backups.</p>
+
+    <pre>
+#!/bin/bash
+
+MONITOR_DIR="$HOME/monitor_folder"
+BACKUP_DIR="$HOME/backup_folder"
+LOG_FILE="$HOME/backup.log"
+
+inotifywait -m -r -e create,modify,delete "$MONITOR_DIR" |
+while read path action file
+do
+    TIMESTAMP=$(date "+%Y-%m-%d_%H-%M-%S")
+    BACKUP_NAME="backup_$TIMESTAMP.tar.gz"
+
+    tar -czf "$BACKUP_DIR/$BACKUP_NAME" "$MONITOR_DIR"
+
+    echo "[$TIMESTAMP] $action detected on $file. Backup created." >> "$LOG_FILE"
+done
+    </pre>
+</section>
+
+<!-- SCREENSHOTS -->
+<section id="screenshots" class="card">
+    <h2>📸 Screenshots & System Diagram</h2>
+
+    <div class="gallery">
+        <div>
+            <img src="screenshots/architecture.png" alt="Architecture Diagram">
+            <p>System Architecture</p>
+        </div>
+
+        <div>
+            <img src="screenshots/terminal-output.png" alt="Terminal Output">
+            <p>Terminal Monitoring Output</p>
+        </div>
+
+        <div>
+            <img src="screenshots/backup-folder.png" alt="Backup Folder">
+            <p>Auto Backup Files</p>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    © 2026 Linux File Monitoring Project | Shell Scripting
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
