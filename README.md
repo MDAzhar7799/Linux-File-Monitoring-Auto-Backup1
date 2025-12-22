@@ -6,7 +6,7 @@ The project also demonstrates professional usage of **Git and GitHub** for versi
 
 ---
 
-## 📌 Project Objective
+##  Project Objective
 
 The objective of this project is to:
 - Monitor files and directories in real time
@@ -16,7 +16,7 @@ The objective of this project is to:
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 - Linux Operating System  
 - Bash / Shell Scripting  
@@ -27,7 +27,7 @@ The objective of this project is to:
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
 - Real-time file monitoring  
 - Automatic backup creation  
@@ -38,7 +38,7 @@ The objective of this project is to:
 
 ---
 
-## ⚙️ How the Project Works
+##  How the Project Works
 
 1. User selects files or directories to monitor  
 2. Shell script uses `inotify` to watch file changes  
@@ -68,7 +68,7 @@ Devops CA2 project/
 
 ---
 
-## 🧹 Git Ignore Configuration
+##  Git Ignore Configuration
 
 The `.gitignore` file is used to exclude:
 - Backup files (`*.tar.gz`)
@@ -79,7 +79,7 @@ This prevents unnecessary files from being uploaded to GitHub.
 
 ---
 
-## 🔧 Git Commands Used in This Project
+##  Git Commands Used in This Project
 
 - `git init` – Initialize Git repository  
 - `git config --global` – Set user identity  
@@ -96,71 +96,74 @@ This prevents unnecessary files from being uploaded to GitHub.
 
 ---
 
-## 🏷️ Versioning
+##  Versioning
 
 - `v1.0` – Initial stable release  
 - `v1.1` – Improved documentation and structure  
 
 ---
 
-## 🚧 Challenges Faced & Outcomes
+##  Challenges Faced & Outcomes
 
-### 1️⃣ Real-Time File Monitoring  
+### 1️ Real-Time File Monitoring  
 **Challenge:** Continuous monitoring without performance issues.  
 **Outcome:** Used `inotify`, which provides event-based monitoring with minimal overhead.
 
 ---
 
-### 2️⃣ Automatic Backup Creation  
+### 2️ Automatic Backup Creation  
 **Challenge:** Ensuring backups are created for every change automatically.  
 **Outcome:** Implemented shell scripts to automate backup generation.
 
 ---
 
-### 3️⃣ Managing Unnecessary Files in GitHub  
+### 3️ Managing Unnecessary Files in GitHub  
 **Challenge:** Backup archives and logs were initially being tracked by Git.  
 **Outcome:** Solved using `.gitignore` to exclude runtime-generated files.
 
 ---
 
-### 4️⃣ Understanding Git Workflow  
+### 4️ Understanding Git Workflow  
 **Challenge:** Learning staging, committing, and pushing workflow.  
 **Outcome:** Practiced `git add`, `git commit`, and `git status` to understand Git’s working model.
 
 ---
 
-### 5️⃣ Temporary Changes Management  
+### 5️ Temporary Changes Management  
 **Challenge:** Switching tasks without committing incomplete work.  
 **Outcome:** Used `git stash` to save and restore work safely.
 
 ---
 
-### 6️⃣ Branch Integration  
+### 6️ Branch Integration  
 **Challenge:** Integrating feature branch changes cleanly.  
 **Outcome:** Used `git rebase` instead of merge to keep history linear.
 
 ---
 
-### 7️⃣ Branch Naming Confusion  
+### 7️ Branch Naming Confusion  
 **Challenge:** Confusion between `master` and `main`.  
 **Outcome:** Understood GitHub branch standards and pushed the correct branch.
 
 ---
 
-### 8️⃣ Cross-Platform Line Ending Warnings  
+### 8️ Cross-Platform Line Ending Warnings  
 **Challenge:** CRLF and LF warnings on Windows.  
 **Outcome:** Learned that these warnings are OS-related and harmless.
 
 ---
 
-## 🔚 Overall Outcome
+##  Conclusion
 
 Through this project, I gained hands-on experience in Linux automation, real-time file monitoring, shell scripting, and professional project management using Git and GitHub.
 
 ---
 
-## ▶️ How to Run the Project
+##  How to Run the Project
 
 ```bash
 chmod +x scripts/monitor_backup.sh
 bash scripts/monitor_backup.sh
+
+## Author
+MD AZHAR
