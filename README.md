@@ -48,6 +48,7 @@ The objective of this project is to:
 ---
 ## Project Structure
 
+```text
 Devops CA2 project/
 │
 ├── index.html                # Main dashboard page
@@ -64,7 +65,7 @@ Devops CA2 project/
 │
 ├── .gitignore                # Files excluded from Git tracking
 └── README.md                 # Project documentation
-
+```
 
 ---
 
@@ -165,5 +166,5 @@ Through this project, I gained hands-on experience in Linux automation, real-tim
 chmod +x scripts/monitor_backup.sh
 bash scripts/monitor_backup.sh
 
-## Author
+## Author 
 MD AZHAR
