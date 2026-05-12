@@ -1,11 +1,11 @@
-# 🛡 FileGuardian DevOps System
+# FileGuardian DevOps System
 ## Linux File Monitoring & Auto-Backup System
 
 > A DevOps CA2 project implementing a **Linux File Monitoring and Auto-Backup system** using Shell Scripting, Docker, and Git. The system monitors directory changes in real time, creates compressed backups, and serves a live web dashboard via Docker + nginx.
 
 ---
 
-## 📌 Project Objective
+## Project Objective
 
 - Monitor files and directories in **real time** using `inotify`
 - Detect file **creation, modification, and deletion**
@@ -15,7 +15,7 @@
 
 ---
 
-## 🛠 Technologies Used
+## Technologies Used
 
 | Technology | Purpose |
 |------------|---------|
@@ -32,7 +32,7 @@
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Devops CA2 project/
@@ -53,7 +53,7 @@ Devops CA2 project/
 
 ---
 
-## 🐳 Docker — Quick Start
+## Docker — Quick Start
 
 ```bash
 # Clone the repo
@@ -83,7 +83,7 @@ bash /scripts/monitor_backup.sh
 
 ---
 
-## ⚙️ GitHub Actions CI/CD
+## GitHub Actions CI/CD
 
 Every `git push` to `main` automatically:
 1. Builds the Docker image
@@ -99,7 +99,7 @@ Every `git push` to `main` automatically:
 
 ---
 
-## ▶ Shell Script (Without Docker)
+## Shell Script (Without Docker)
 
 ```bash
 sudo apt install inotify-tools
@@ -109,7 +109,7 @@ bash scripts/monitor_backup.sh
 
 ---
 
-## 🌿 Git Commands Used
+## Git Commands Used
 
 ```bash
 git init | git add . | git commit | git stash
@@ -119,7 +119,7 @@ git tag v1.0 | git push origin main --tags
 
 ---
 
-## 🏷 Versions
+## Versions
 
 | Tag | Description |
 |-----|-------------|
