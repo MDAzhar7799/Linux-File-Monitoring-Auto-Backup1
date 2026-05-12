@@ -128,7 +128,7 @@ git tag v1.0 | git push origin main --tags
 
 ---
 
-## 👤 Author
+## Author
 
 **MD AZHAR** — DevOps CA2 Project
 GitHub: [MDAzhar7799](https://github.com/MDAzhar7799)
