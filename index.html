@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FileGuardian DevOps System</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- SCANLINE OVERLAY -->
+  <div class="scanlines"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-box">
+        <span class="logo-icon">🛡</span>
+        <div>
+          <h1 class="logo-title">FileGuardian</h1>
+          <p class="logo-sub">DevOps Monitoring System</p>
+        </div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-pill active" id="monitorStatus">● MONITORING ACTIVE</div>
+      <div class="live-clock" id="liveClock">00:00:00</div>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-label">CA2 PROJECT — DEVOPS SYSTEM</p>
+      <h2 class="hero-title">Linux File Monitoring<br/><span class="accent">& Auto-Backup</span></h2>
+      <p class="hero-desc">Real-time file change detection using <code>inotify</code>. Automated compressed backups. Git-powered version control. Built with Shell Scripting &amp; Linux.</p>
+      <div class="hero-badges">
+        <span class="badge">Linux</span>
+        <span class="badge">Bash</span>
+        <span class="badge">inotify</span>
+        <span class="badge">Git</span>
+        <span class="badge">GitHub</span>
+        <span class="badge">HTML/CSS/JS</span>
+      </div>
+    </div>
+    <div class="hero-terminal">
+      <div class="terminal-bar"><span class="t-dot red"></span><span class="t-dot yellow"></span><span class="t-dot green"></span><span class="t-title">monitor_backup.sh</span></div>
+      <div class="terminal-body" id="terminalOutput"></div>
+    </div>
+  </section>
+
+  <!-- STATS CARDS -->
+  <section class="stats-section">
+    <div class="stat-card">
+      <div class="stat-icon">📁</div>
+      <div class="stat-val" id="filesMonitored">0</div>
+      <div class="stat-label">Files Monitored</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🔄</div>
+      <div class="stat-val" id="backupsCreated">0</div>
+      <div class="stat-label">Backups Created</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">⚡</div>
+      <div class="stat-val" id="eventsDetected">0</div>
+      <div class="stat-label">Events Detected</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">✅</div>
+      <div class="stat-val">99.9%</div>
+      <div class="stat-label">System Uptime</div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT GRID -->
+  <section class="main-grid">
+
+    <!-- FILE ACTIVITY LOG -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>📋 Live Activity Log</h3>
+        <button class="btn-sm" onclick="clearLog()">Clear</button>
+      </div>
+      <div class="log-area" id="activityLog">
+        <div class="log-entry info">[INFO] System initialized — Watching /home/azhar/monitored</div>
+        <div class="log-entry success">[BACKUP] backup_20250512_001.tar.gz → /backups/</div>
+        <div class="log-entry warning">[MODIFY] config.yaml modified at 09:14:33</div>
+        <div class="log-entry success">[CREATE] deploy_script.sh created at 09:15:01</div>
+        <div class="log-entry danger">[DELETE] old_log.txt removed at 09:16:22</div>
+      </div>
+    </div>
+
+    <!-- BACKUP TABLE -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>💾 Backup Registry</h3>
+        <button class="btn-sm" onclick="addFakeBackup()">+ Simulate</button>
+      </div>
+      <table class="backup-table">
+        <thead>
+          <tr><th>Filename</th><th>Size</th><th>Time</th><th>Status</th></tr>
+        </thead>
+        <tbody id="backupTableBody">
+          <tr><td>backup_001.tar.gz</td><td>2.3 MB</td><td>09:10:05</td><td><span class="tag green">OK</span></td></tr>
+          <tr><td>backup_002.tar.gz</td><td>2.5 MB</td><td>09:14:33</td><td><span class="tag green">OK</span></td></tr>
+          <tr><td>backup_003.tar.gz</td><td>2.4 MB</td><td>09:16:50</td><td><span class="tag green">OK</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- GIT WORKFLOW -->
+    <div class="panel">
+      <div class="panel-header"><h3>🔀 Git Workflow</h3></div>
+      <div class="git-steps">
+        <div class="git-step done"><span class="step-num">01</span><div><strong>git init</strong><p>Initialize local repository</p></div></div>
+        <div class="git-step done"><span class="step-num">02</span><div><strong>git add .</strong><p>Stage all project files</p></div></div>
+        <div class="git-step done"><span class="step-num">03</span><div><strong>git commit -m "Initial"</strong><p>Save first snapshot</p></div></div>
+        <div class="git-step done"><span class="step-num">04</span><div><strong>git branch feature</strong><p>Create feature branch</p></div></div>
+        <div class="git-step done"><span class="step-num">05</span><div><strong>git rebase main</strong><p>Keep history linear</p></div></div>
+        <div class="git-step done"><span class="step-num">06</span><div><strong>git tag v1.0</strong><p>Mark stable release</p></div></div>
+        <div class="git-step done"><span class="step-num">07</span><div><strong>git push origin main</strong><p>Upload to GitHub</p></div></div>
+      </div>
+    </div>
+
+    <!-- MONITORING CONTROLS -->
+    <div class="panel">
+      <div class="panel-header"><h3>⚙️ Monitoring Controls</h3></div>
+      <div class="controls">
+        <div class="control-row">
+          <label>Watch Directory</label>
+          <input type="text" class="ctrl-input" value="/home/azhar/monitored" id="watchDir"/>
+        </div>
+        <div class="control-row">
+          <label>Backup Destination</label>
+          <input type="text" class="ctrl-input" value="/home/azhar/backups" id="backupDir"/>
+        </div>
+        <div class="control-row">
+          <label>inotify Events</label>
+          <div class="checkbox-row">
+            <label><input type="checkbox" checked/> CREATE</label>
+            <label><input type="checkbox" checked/> MODIFY</label>
+            <label><input type="checkbox" checked/> DELETE</label>
+            <label><input type="checkbox"/> MOVE</label>
+          </div>
+        </div>
+        <div class="control-row">
+          <label>Backup Compression</label>
+          <select class="ctrl-input">
+            <option>tar.gz (gzip)</option>
+            <option>tar.bz2 (bzip2)</option>
+            <option>zip</option>
+          </select>
+        </div>
+        <button class="btn-primary" onclick="simulateEvent()">▶ Simulate File Event</button>
+        <button class="btn-danger" onclick="toggleMonitor()">⏹ Stop Monitoring</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- HOW IT WORKS SECTION -->
+  <section class="how-section">
+    <h2 class="section-title">How It Works</h2>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-icon">👁</div>
+        <h4>1. Monitor</h4>
+        <p>inotify watches the selected directory for any filesystem events in real time</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">🔍</div>
+        <h4>2. Detect</h4>
+        <p>Shell script captures events: CREATE, MODIFY, DELETE and logs metadata</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">📦</div>
+        <h4>3. Backup</h4>
+        <p>Automatically compresses changed directory into timestamped .tar.gz archive</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">📝</div>
+        <h4>4. Log & Track</h4>
+        <p>Logs every event and backup. Git tracks changes. Dashboard displays status</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECT STRUCTURE -->
+  <section class="structure-section">
+    <h2 class="section-title">Project Structure</h2>
+    <div class="tree-container">
+      <pre class="file-tree">
+<span class="t-root">📁 Devops CA2 project/</span>
+├── <span class="t-html">index.html</span>          <span class="t-comment"># Main dashboard page</span>
+├── <span class="t-css">style.css</span>           <span class="t-comment"># Styling for web interface</span>
+├── <span class="t-js">script.js</span>           <span class="t-comment"># Frontend logic & interactivity</span>
+├── <span class="t-folder">📁 scripts/</span>
+│   └── <span class="t-sh">monitor_backup.sh</span>   <span class="t-comment"># Core monitoring & backup script</span>
+├── <span class="t-folder">📁 screenshots/</span>
+│   ├── <span class="t-img">architecture.png</span>
+│   ├── <span class="t-img">terminal-output.png</span>
+│   └── <span class="t-img">backup-folder.png</span>
+├── <span class="t-git">.gitignore</span>          <span class="t-comment"># Excludes *.tar.gz, logs, temp files</span>
+└── <span class="t-md">README.md</span>           <span class="t-comment"># Full project documentation</span>
+      </pre>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <strong>FileGuardian DevOps System</strong> — CA2 Project<br/>
+        <span>Author: MD AZHAR &nbsp;|&nbsp; Linux File Monitoring &amp; Auto-Backup</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/MDAzhar7799/Linux-File-Monitoring-Auto-Backup1" target="_blank">GitHub Repo</a>
+        <span>v1.1 — Stable Release</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
