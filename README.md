@@ -1,170 +1,210 @@
 # FileGuardian DevOps System
 ## Linux File Monitoring & Auto-Backup System
 
-GuardianFS is a Linux-based file monitoring and automatic backup system that detects real-time file changes and securely creates backups.  
-The project also demonstrates professional usage of **Git and GitHub** for version control, branching, tagging, and release management.
+> A DevOps CA2 project implementing a **Linux File Monitoring and Auto-Backup System** using Shell Scripting, Docker, and Git. The system monitors directory changes in real time, creates compressed backups, and serves a live web dashboard via Docker + nginx.
 
 ---
 
-##  Project Objective
+# Project Objective
 
-The objective of this project is to:
-- Monitor files and directories in real time
-- Detect file creation, modification, and deletion
-- Automatically create backups on every change
-- Maintain clean and professional version control using Git and GitHub
-
----
-
-##  Technologies Used
-
-- Linux Operating System  
-- Bash / Shell Scripting  
-- `inotify` (for real-time file monitoring)  
-- HTML, CSS, JavaScript (Dashboard UI)  
-- Git (Version Control System)  
-- GitHub (Remote Repository)
+- Monitor files and directories in **real time** using `inotify`
+- Detect file **creation, modification, and deletion**
+- Automatically create **compressed backups** (`.tar.gz`) on every change
+- Serve an interactive **web dashboard** via Docker + nginx
+- Maintain a professional **CI/CD pipeline** using GitHub Actions + Docker Hub
 
 ---
 
-##  Key Features
+# Technologies Used
 
-- Real-time file monitoring  
-- Automatic backup creation  
-- Dashboard displaying file status  
-- Backup location and file metadata  
-- Clean repository using `.gitignore`  
-- Version tracking with commits and tags  
-
----
-
-##  How the Project Works
-
-1. User selects files or directories to monitor  
-2. Shell script uses `inotify` to watch file changes  
-3. When a change is detected, an automatic backup is created  
-4. Backup details are logged and displayed in the dashboard  
+| Technology | Purpose |
+|------------|---------|
+| Linux (Ubuntu) | Operating System |
+| Bash / Shell Scripting | Core automation script |
+| `inotify` (`inotifywait`) | Real-time file monitoring |
+| HTML, CSS, JavaScript | Dashboard Web UI |
+| Docker | Containerization |
+| docker-compose | Multi-container orchestration |
+| nginx (alpine) | Web server for dashboard |
+| GitHub Actions | CI/CD pipeline (auto build & push) |
+| Git | Version Control System |
+| GitHub | Remote Repository |
 
 ---
-## Project Structure
 
-```text
-Devops CA2 project/
+# Project Structure
+
+```bash
+Linux-File-Monitoring-Auto-Backup1/
 │
-├── index.html                # Main dashboard page
-├── style.css                 # Styling for the web interface
-├── script.js                 # Frontend logic and interactivity
+├── index.html
+├── style.css
+├── script.js
 │
-├── scripts/                  # Shell scripts
-│   └── monitor_backup.sh     # File monitoring & auto-backup script
+├── scripts/
+│   └── monitor_backup.sh
 │
-├── screenshots/              # Project output & architecture images
-│   ├── architecture.png
-│   ├── terminal-output.png
-│   └── backup-folder.png
+├── Dockerfile
+├── docker-compose.yml
+├── nginx.conf
 │
-├── .gitignore                # Files excluded from Git tracking
-└── README.md                 # Project documentation
+├── .github/
+│   └── workflows/
+│       └── docker-deploy.yml
+│
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-##  Git Ignore Configuration
+# Docker — Quick Start
 
-The `.gitignore` file is used to exclude:
-- Backup files (`*.tar.gz`)
-- Log files
-- Temporary system files
+## Clone Repository
 
-This prevents unnecessary files from being uploaded to GitHub.
+```bash
+git clone https://github.com/MDAzhar7799/Linux-File-Monitoring-Auto-Backup1.git
+cd Linux-File-Monitoring-Auto-Backup1
+```
 
----
+## Build & Start Containers
 
-##  Git Commands Used in This Project
+```bash
+docker-compose up -d
+```
 
-- `git init` – Initialize Git repository  
-- `git config --global` – Set user identity  
-- `git status` – Check file status  
-- `git add` – Stage project files  
-- `git commit` – Save project snapshots  
-- `git stash` – Temporarily store changes  
-- `git branch` – Create feature branches  
-- `git checkout` – Switch branches  
-- `git rebase` – Maintain clean commit history  
-- `git tag` – Mark stable releases  
-- `git remote add origin` – Connect GitHub  
-- `git push` – Upload code and tags  
+Open dashboard in browser:
+
+```bash
+http://localhost:8080
+```
 
 ---
 
-##  Versioning
+# Docker Only
 
-- `v1.0` – Initial stable release  
-- `v1.1` – Improved documentation and structure  
+## Build Docker Image
 
----
+```bash
+docker build -t fileguardian-dashboard .
+```
 
-##  Challenges Faced & Outcomes
+## Run Container
 
-### 1️ Real-Time File Monitoring  
-**Challenge:** Continuous monitoring without performance issues.  
-**Outcome:** Used `inotify`, which provides event-based monitoring with minimal overhead.
-
----
-
-### 2️ Automatic Backup Creation  
-**Challenge:** Ensuring backups are created for every change automatically.  
-**Outcome:** Implemented shell scripts to automate backup generation.
+```bash
+docker run -d -p 8080:80 --name fileguardian fileguardian-dashboard
+```
 
 ---
 
-### 3️ Managing Unnecessary Files in GitHub  
-**Challenge:** Backup archives and logs were initially being tracked by Git.  
-**Outcome:** Solved using `.gitignore` to exclude runtime-generated files.
+# Useful Docker Commands
+
+```bash
+# Check running containers
+docker-compose ps
+
+# View live logs
+docker-compose logs -f
+
+# Stop all containers
+docker-compose down
+
+# Open container terminal
+docker exec -it fileguardian_monitor bash
+
+# Run monitoring script manually
+bash /scripts/monitor_backup.sh
+```
 
 ---
 
-### 4️ Understanding Git Workflow  
-**Challenge:** Learning staging, committing, and pushing workflow.  
-**Outcome:** Practiced `git add`, `git commit`, and `git status` to understand Git’s working model.
+# GitHub Actions CI/CD
+
+Every push to the `main` branch automatically:
+
+1. Builds the Docker image
+2. Tests container health
+3. Pushes image to Docker Hub with tags:
+   - `latest`
+   - `v1.1`
+   - `sha-<commit>`
 
 ---
 
-### 5️ Temporary Changes Management  
-**Challenge:** Switching tasks without committing incomplete work.  
-**Outcome:** Used `git stash` to save and restore work safely.
+# GitHub Secrets Setup
+
+Go to:
+
+```text
+GitHub Repository → Settings → Secrets → Actions
+```
+
+Add the following secrets:
+
+| Secret Name | Value |
+|-------------|-------|
+| `DOCKERHUB_USERNAME` | Your Docker Hub username |
+| `DOCKERHUB_TOKEN` | Your Docker Hub access token |
 
 ---
 
-### 6️ Branch Integration  
-**Challenge:** Integrating feature branch changes cleanly.  
-**Outcome:** Used `git rebase` instead of merge to keep history linear.
+# Run Shell Script Without Docker
 
----
+## Install inotify-tools
 
-### 7️ Branch Naming Confusion  
-**Challenge:** Confusion between `master` and `main`.  
-**Outcome:** Understood GitHub branch standards and pushed the correct branch.
+```bash
+sudo apt update
+sudo apt install inotify-tools
+```
 
----
-
-### 8️ Cross-Platform Line Ending Warnings  
-**Challenge:** CRLF and LF warnings on Windows.  
-**Outcome:** Learned that these warnings are OS-related and harmless.
-
----
-
-##  Conclusion
-
-Through this project, I gained hands-on experience in Linux automation, real-time file monitoring, shell scripting, and professional project management using Git and GitHub.
-
----
-
-##  How to Run the Project
+## Give Execute Permission
 
 ```bash
 chmod +x scripts/monitor_backup.sh
-bash scripts/monitor_backup.sh
+```
 
-## Author 
-MD AZHAR
+## Run Script
+
+```bash
+bash scripts/monitor_backup.sh
+```
+
+---
+
+# Git Commands Used
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+
+git stash
+git branch
+git checkout
+git rebase
+
+git tag v1.0
+git push origin main --tags
+```
+
+---
+
+# 🏷 Version History
+
+| Version | Description |
+|---------|-------------|
+| `v1.0` | Initial stable release |
+| `v1.1` | Docker + CI/CD pipeline added |
+
+---
+
+# Author
+
+## MD AZHAR
+
+**DevOps CA2 Project**
+
+GitHub:  
+https://github.com/MDAzhar7799
+
+---
